@@ -1,0 +1,96 @@
+
+#navbarTogglerDemo01{
+    
+        background-color: #ffcd00;
+        overflow: hidden;
+        
+        
+        
+    }
+    
+    
+    #navbarTogglerDemo01 a {
+    color:#05307f;
+    text-align: center;
+    text-decoration: none;
+    float: left;
+    padding: 22px;
+    
+    }
+    
+    
+    
+    #navbarTogglerDemo01 a:hover{
+    
+        background-color: #F5F5F5;
+    }
+    
+    #navbarTogglerDemo01 a.active{
+    
+        color: white;
+    }
+
+    .navbar{
+
+        padding: 0px;
+    }
+
+    .activebutton{
+
+        background-color: #ffcd00;
+
+    }
+
+.jumbotron{
+
+    width: 70%;
+    background-color:#DCDCDC;
+    padding: 100px 160px;
+    margin: 50px 200px;
+}
+
+#map {
+    height: 400px;
+    width: 85%;
+    margin:50px;
+}
+
+
+.half{
+
+   width:40%;
+    float:right;
+    margin-top: 70px;
+    margin-right: 5%;
+    margin-left:5%;
+    overflow:hidden;
+    font-size: 20px;
+   
+}
+
+
+.sidetab{
+
+    width:20%;
+}
+
+.section{
+
+    width:100%;
+    height: 800px;
+
+}
+
+
+.footer{
+
+
+    background-color: #383838;
+    color: white;
+}
+
+.settingstable{
+
+    font-size: 25px;
+    margin-bottom: 80px;
+}
