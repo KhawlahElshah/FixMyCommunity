@@ -4,11 +4,12 @@ namespace App;
 
 
 
+use Request;
 class report extends model
 {
     //
 
-    protected $guarded = [];
+ 
 
 
     public function type(){
@@ -17,12 +18,20 @@ class report extends model
     }
 
 
-    public function council(){
+    // public function council(){
 
-        return $this->belongsTo('\App\council','council_id');
-    }
+    //     return $this->belongsTo('\App\council','council_id');
+    // }
    
 
+    public function council(){
 
+    return $this->belongsTo('\App\council','council_id');
+}
+
+public function state(){
+
+    return $this->belongsTo('\App\state','status_id');
+}
     
 }

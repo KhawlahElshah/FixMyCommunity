@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use \App\council;
+
+
 class CouncilController extends Controller
 {
     //
@@ -18,16 +21,35 @@ class CouncilController extends Controller
             }
 
 
-    public function add(){
+    public function add(Request $request){
                 
-                
-            $this->validate(request(),['name'=>'required']);
+              // dd($request);
+            $this->validate(request(),['councilnamefieldadd'=>'required',
+                                        'useridfieldselect'=>'required']);
                     
-                council::create(request((['name'])));
-                        
-                    
-            return redirect()->route('show');
+               // council::create(request((['name','user_id'])));
+                council::create(['name'=>$request->councilnamefieldadd, 'user_id'=>$request->useridfieldselect]);
+          
+            return redirect('/dashboard');
+               
+              
                       
                 }        
+    
+     public function update(Request $request){
 
+                
+                    $this->validate(request(),['councilnamefield'=>'required']);
+                    dd($request->all());
+                    DB::table('councils')->where('id',$request->councilidfield)->update(['name'=>$request->councilnamefield]);
+                    return redirect('/dashboard');
+
+                }
+    public function destroy(Request $request){
+
+        DB::table('councils')->where('id', $request->councilidfielddelete)->delete();
+        return redirect('/dashboard');
+    }
+        
+ 
 }

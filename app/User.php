@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','council_id',
     ];
 
     /**
@@ -29,20 +29,9 @@ class User extends Authenticatable
 
 
     public function council(){
-
-        return $this->belongsTO('\App\User','council_id');
-    }
-
-
-    public function isAdmin(){
-
         
-
-        if(Auth::user()->email=='info@hc,ly')
-
-        return true;
-        else
-        return false;
-    }
+            return $this->hasOne('\App\council');
+        }
+       
 
 }

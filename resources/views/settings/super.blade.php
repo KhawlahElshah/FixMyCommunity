@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.usersmaster')
 
 
 @section('content')
@@ -13,8 +13,8 @@
   
   <ul class="nav flex-column nav-tabs">
     <li class="active"><a href="#types">أنواع البلاغات</a></li>
-    <li><a href="#councils">البلديات</a></li>
     <li><a href="#users">المستخدمين</a></li>
+    <li><a href="#councils">البلديات</a></li>
     <li><a href="#states">حالات البلاغ</a></li>
   </ul>
 </div>
@@ -24,56 +24,36 @@
       <h3>أنواع البلاغات</h3>
       <p>
 
-<form method="POST" action="/supersettings/type">
-{{ csrf_field() }}
+<form method="POST" action="/dashboard/type">
+ {{ csrf_field() }}
  <label for="name">إضافة نوع بلاغ جديد</label>
   <input type="text"   name="name">
  <button type="submit" class="btn btn-lg activebutton">إضافة</button>
 </form>
 
-<table class="table-striped table-bordered w-100 settingstable" id="reporttypetable">
+<table class="table-striped table-bordered w-100 settingstable" id="typestable">
     @foreach($types as $type)
-        <tr>
+        <tr class="typerow">
         <td>{{$type->id}} </td>
-        <td> {{$type->name}}</td>
+        <td class="typename" id="typename"> {{$type->name}}</td>
         
-        <td><i class="fa fa-pencil" aria-hidden="true"> </td>
-        <td><i class="fa fa-trash-o" aria-hidden="true"></td>
+        <td ><button type="submit" class="fa fa-pencil border-0 bg-light"  data-toggle="modal" data-target="#typeupdatemodel"></button>
+        
+        </td>
+        
+          @include('typeupdate')
+        
         </tr>
        
     @endforeach
+  
 </table>
 
 </p>
+ </div>
 
-    </div>
-    <div id="councils" class="tab-pane fade">
-      <h3>البلديات</h3>
-     <p>
 
-<form method="POST" action="/supersettings/council">
-{{ csrf_field() }}
-
- <label for="name">إضافة بلدية جديدة</label>
-  <input type="text"  name="name"> 
-<button type="submit" class="btn btn-lg activebutton">إضافة</button>
-</form>
-
-<table class="table-striped table-bordered w-100 settingstable">
-    @foreach($councils as $council)
-        <tr>
-        <td>{{$council->id}} </td>
-        <td> {{$council->name}}</td>
-        
-        <td><i class="fa fa-pencil" aria-hidden="true"> </td>
-        <td><i class="fa fa-trash-o" aria-hidden="true"></td>
-        </tr>
-    @endforeach
-</table>
-</p>
-
-</div>
-    <div id="users" class="tab-pane fade">
+ <div id="users" class="tab-pane fade">
       <h3>المستخدمين</h3>
       <p>
 
@@ -81,27 +61,59 @@
 
  <button type="submit" class="btn btn-lg activebutton" data-toggle="modal" data-target="#exampleModal">إضافة</button>
 @include('signup')
-<table class="table-striped table-bordered w-100 settingstable">
+<table class="table-striped table-bordered w-100 settingstable" id="userstable">
     @foreach($users as $user)
-        <tr>
+        <tr class="userrow">
         <td>{{$user->id}} </td>
         <td> {{$user->name}}</td>
         <td> {{$user->email}}</td>
-        <td> {{$user->council_id}}</td>
-        <td><i class="fa fa-pencil" aria-hidden="true"> </td>
-        <td><i class="fa fa-trash-o" aria-hidden="true"></td>
+        
+        <td ><button type="submit" class="fa fa-pencil border-0 bg-light"  data-toggle="modal" data-target="#updatemodeluser"></button> </td>
+ 
+         @include('userupdate')
         </tr>
     @endforeach
 </table>
 </p>
 
  </div>
+   
+    <div id="councils" class="tab-pane fade">
+      <h3>البلديات</h3>
+     <p>
+
+
+
+ <label for="name">إضافة بلدية جديدة</label>
+  
+<button type="submit" class="btn btn-lg activebutton" data-toggle="modal" data-target="#addcouncilmodel">إضافة</button>
+@include('addcouncil')
+
+
+<table class="table-striped table-bordered w-100 settingstable" id="councilstable">
+    @foreach($councils as $council)
+        <tr class="councilrow">
+        <td>{{$council->id}} </td>
+        <td> {{$council->name}}</td>
+        <td>{{$council->user->name}}</td>
+        
+        <td ><button type="submit" class="fa fa-pencil border-0 bg-light"  data-toggle="modal" data-target="#updatemodelcouncil"></button> </td>
+ 
+        @include('councilupdate')
+        </tr>
+    @endforeach
+    
+</table>
+</p>
+
+</div>
+   
     <div id="states" class="tab-pane fade">
       <h3>حالات البلاغ</h3>
       <p>
 
-<form method="POST" action="/supersettings/state">
-{{csrf_field() }}
+<form method="POST" action="/dashboard/state">
+ {{ csrf_field() }}
  <label for="name">إضافة حالة بلاغ</label>
   <input type="text"  name="name"> 
  
@@ -110,17 +122,19 @@
 </form>
 
 
-<table class="table-striped table-bordered w-100 settingstable">
+<table class="table-striped table-bordered w-100 settingstable" id="statestable">
     @foreach($states as $state)
-        <tr>
+        <tr class="staterow">
         <td>{{$state->id}} </td>
         <td> {{$state->name}}</td>
         
 
-        <td><i class="fa fa-pencil" aria-hidden="true"> </td>
-        <td><i class="fa fa-trash-o" aria-hidden="true"></td>
+        <td ><button type="submit" class="fa fa-pencil border-0 bg-light"  data-toggle="modal" data-target="#updatemodelstate"></button> </td>
+ 
+         @include('stateupdate')
         </tr>
     @endforeach
+   
 </table>
 </p>
 

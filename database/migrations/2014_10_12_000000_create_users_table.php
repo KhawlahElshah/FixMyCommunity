@@ -18,7 +18,6 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->integer('council_id');
             $table->charset = 'utf8';
             $table->collation = 'utf8_unicode_ci';
             $table->rememberToken();

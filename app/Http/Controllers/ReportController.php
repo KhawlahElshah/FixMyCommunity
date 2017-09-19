@@ -1,13 +1,19 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 use \App\report;
 use \App\council;
 use \App\reporttype;
+use \App\state;
+use \App\user;
+use Auth;
+
 class ReportController extends Controller
 {
+
     //
 
     public function index(council $councilitems, reporttype $reporttypeitems){
@@ -41,15 +47,19 @@ class ReportController extends Controller
     public function store(){
         
         // revise this function 
+       
+        //dd($request->all());
         
         $this->validate(request(),[
             'type_id'=>'required',
             'council_id'=>'required',
             'danger'=>'required',
-            'status_id'=>'required'
+            'status_id'=>'required',
+            'lat'=>'required',
+            'lng'=>'required'
         ]);
 
-       
+        //dd($request->all());
         report::create(request((['type_id', 'council_id','danger','desc','lat','lng','status_id'])));
      
         return redirect('/');
@@ -59,8 +69,76 @@ class ReportController extends Controller
     public function show(council $councilitem){
 
         $councilitems = council::all(['name', 'id']);
-        return view('reports.show',compact('councilitems',$councilitems));
+        $high=0;
+        $locations = DB::table('reports')->select('lat', 'lng')->get();
+      // dd($locations);
+      
+      
+        return view('reports.show',compact('councilitems','$high','locations'));
     }
 
+    // public function getreport(Request $request){
+
+    //     $highdanger= report::where([['danger','=','عالي'],['council_id','=',$request->showcouncilid]])->get();
+    //     $avregedanger=report::where(['danger','=','متوسط',['council_id','=',$request->showcouncilid]])->get();
+    //     $lowdanger=report::where(['danger','=','منخفض',['council_id','=',$request->showcouncilid]])->get();
+    //     $done=report::where(['status_id','=','تم إنجازه',['council_id','=',$request->showcouncilid]])->get();
+
+        
+
+    // }
+public function update(Request $request){
+
+$this->validate(request(),['stateidfieldselect'=>'required']);
+DB::table('reports')->where('id',$request->reportidfield)->update(['status_id'=>$request->stateidfieldselect]);
+return redirect('/dashboard');
+}
+
+
+
+
+public function showdashboard(reporttype $types,council $councils,state $states,report $reports){
+
+    //for superadmin view
+    $types=reporttype::all();
+    $councils=council::all();
+    $users=user::all();
+    $states=state::all();
+   
+    
+    if(Auth::guest())
+    {
+        
+        return redirect('/login');
+        
+    }
+    else
+    {
+        //dd(Auth::user());
+         if(Auth::user()->email =='k.tawfik@hc.ly')
+         {
+           
+                
+           
+         return view('settings.super',compact('types','councils','users','states'));
+         
+        
+         }
+          else{
+
+            //for users view
+            $currentuser=Auth::user();
+           // dd($currentuser);
+            $currentcouncil=$currentuser->council;
+            $councilreports=$currentcouncil->reports;
+
+           
+         return view('settings.default',compact('currentuser','currentcoucnil','councilreports','states'));
+       // return view('reports.Dashboard',compact('types','councils','users','states','currentuser','currentcoucnil','councilreports'));
+        }    
+       //  return view('reports.Dashboard',compact('types','councils','users','states','currentuser','currentcoucnil','councilreports'));
+}
+
+}
    
 }

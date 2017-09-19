@@ -8,29 +8,29 @@ use \App\council;
 use \App\report;
 use \App\user;
 use \App\state;
+use Illuminate\Support\Facades\DB;
 class UsersController extends Controller
 {
     //
-    public function index(reporttype $types,council $councils,state $states){
+
+    
+
+    public function update(Request $request){
        
+                $this->validate(request(),['usernamefield'=>'required',
+                                            'useremailfield'=>'required']);
+
+            //dd($request->usernamefield);
+                DB::table('users')->where('id',$request->useridfield)->update(['name'=>$request->usernamefield, 'email'=>$request->useremailfield]);
+                return redirect('/dashboard');
+            }
         
-        $types=reporttype::all();
-        $councils=council::all();
-        $users=user::all();
-        $states=state::all();
         
+            public function destroy(Request $request){
         
-        return view('settings.super',compact('types','councils','users','states'));
-
-    }
-
-    public function show(report $reports){
-
-        $reports=report::all();
-
-        return view('settings.default',compact('reports'));
-
-    }
+              DB::table('users')->where('id', $request->useridfielddelete)->delete();
+              return redirect('/dashboard');
+            }
 
 
     

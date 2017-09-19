@@ -11,31 +11,30 @@
        <link href="/css/style.css" rel="stylesheet">
        <link rel="stylesheet" href="/css/font-awesome/css/font-awesome.min.css">
       
-      
-       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-       {{--  <script type="text/javascript" src='http://maps.google.com/maps/api/js?sensor=false&libraries=places'></script>  --}}
+      <link href="{{ asset('css/app.css') }}" rel="stylesheet">
        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
        {{--  <script src="js/locationpicker.jquery.js"></script>  --}}
 
        <title>Fix my Community</title>
+
+    
 </head>
 <body>
     
- @include('layouts.nav')
+ @include('layouts.usersnav')
 
 
 
    @yield('content')
-@include('layouts.footer')
+   
+{{--  @include('layouts.footer')  --}}
 {{--  <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
 <script src="{{asset('/js/index.js')}}"></script>  --}}
 
 {{--  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>  --}}
-<script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWoDqiKQt97gB7Li1-dy627nSMx0Q5RSg&callback=initMap">
-    </script>
+{{--  <script src="{{asset('/js/index.js')}}"></script>   --}}
+<script src="{{ asset('js/app.js') }}"></script>
 <script src="{{asset('/js/index.js')}}"></script> 
-
 
 </body>
 </html>

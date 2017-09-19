@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use \App\State;
+use Illuminate\Support\Facades\DB;
 class StateController extends Controller
 {
     //
@@ -15,5 +16,19 @@ class StateController extends Controller
 
         State::create(request(['name']));
         return redirect()->route('show');
+    }
+
+    public function update(Request $request,State $state){
+
+        $this->validate(request(),['statenamefield'=>'required']);
+        DB::table('states')->where('id',$request->stateidfield)->update(['name'=>$request->statenamefield]);
+        return redirect('/dashboard');
+    }
+
+
+    public function destroy(Request $request){
+
+      DB::table('states')->where('id', $request->stateidfielddelete)->delete();
+      return redirect('/dashboard');
     }
 }

@@ -6,7 +6,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-
+use Illuminate\Http\Request;
 class RegisterController extends Controller
 {
     /*
@@ -27,7 +27,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/settings';
+    protected $redirectTo = '/dashboard';
 
     /**
      * Create a new controller instance.
@@ -36,7 +36,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('auth');
     }
 
     /**
@@ -50,14 +50,8 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-           
+            'password' => 'required|string|min:6|confirmed'
         ]);
-    }
-
-    public function getRegister()
-    {
-       return view('signup');
     }
 
     /**
@@ -72,7 +66,19 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-          
         ]);
     }
+
+    public function register(Request $request)
+    {
+        $validator = $this->validator($request->all());
+        
+            
+        
+            // Commenting this line should help.
+            $this->create($request->all()); 
+        
+            return redirect($this->redirectPath());
+    }
+    
 }

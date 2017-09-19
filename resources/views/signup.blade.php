@@ -10,14 +10,27 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      
+
+     @include('auth.register')
+     
+    </div>
+  </div>
+</div>
+
+
+
+
+{{--  
+
+<div class="modal-body">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-heading">ادخل البيانات التالية</div>
 
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('signup') }}">
+                    <form class="form-horizontal" method="POST" action="/supersettings/signup">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
@@ -50,6 +63,19 @@
                              <label for="email" class="col-md-3 control-label">البريد الإلكتروني</label>
                         </div>
 
+
+                        <div class="col-md-9">
+                                
+                                <label for="councilname">البلدية</label>
+                                <select class="form-control mb-3" name="council_id">
+
+                                @foreach($councils as $council)
+                                <option value="{{$council->id}}">{{$council->name}}</option>
+                                @endforeach
+                                </select>
+
+                        </div>
+                        
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             
 
@@ -87,8 +113,4 @@
             </div>
         </div>
     </div>
-      </div>
-     
-    </div>
-  </div>
-</div>
+      </div>  --}}

@@ -10,54 +10,51 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use App\Http\Middleware\isAdmin;
 
+//guest routes
 Route::get('/','ReportController@index');
-
-//Route::get('/','ReportController@create');
-
-
-
-Route::POST('/','ReportController@store');
 Route::get('/reports/show','ReportController@show');
+Route::POST('/create','ReportController@store');
+Route::POST('/reports/show/getreport','ReportController@getreport');
+Route::get('/aboutus',function(){
+    
+        return view('contents.aboutus');
+    });
+    
+    Route::get('/contact', function(){
+        return view('contents.contactus');
+    });
 
-Auth::routes();
-Route::POST('/supersettings/signup','RegisterController@create')->name('signup');
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/supersettings','UsersController@index')->name('show');
-Route::get('/settings','UsersController@show');
+//Route::get('/home', 'HomeController@index')->name('home');
+
+
+//dashboard route
+Route::get('/dashboard', 'ReportController@showdashboard');
+
 
 
 //add a new item (super user interface)
-Route::POST('/supersettings/type','ReporttypeController@add');
-Route::POST('/supersettings/council','CouncilController@add');
-Route::POST('/supersetings/user','UsersControoler@add');
-Route::POST('/supersettings/state','StateController@add');
+Route::POST('/dashboard/type','ReporttypeController@add');
+Route::POST('/dashboard/council','CouncilController@add');
+Route::POST('/dashboard/state','StateController@add');
 
 
+// updates in supersettings
+Route::PATCH('/dashboard/type/{typeidfield}/update','ReporttypeController@update');
+Route::PATCH('/dashboard/council/{councilidfield}/update','CouncilController@update');
+Route::PATCH('/dashboard/state/{stateidfield}/update','StateController@update');
+Route::PATCH('/dashboard/report/{reportidfield}/update', 'ReportController@update');
+Route::PATCH('/dashboard/user/{useridfield}/update', 'UsersController@update');
 
-Route::get('/aboutus',function(){
+//deletes in supersettings
+Route::delete('/dashboard/type/{type}/delete','ReporttypeController@destroy');
+Route::delete('/dashboard/council/{council}/delete','CouncilController@destroy');
+Route::delete('/dashboard/state/{state}/delete','StateController@destroy');
+Route::delete('/dashboard/user/{useridfield}/delete','UsersController@destroy');
 
-    return view('contents.aboutus');
-});
-
-Route::get('/contact', function(){
-    return view('contents.contactus');
-});
-
+Auth::routes();
 
 
-//auth 
-$this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
-$this->post('login', 'Auth\LoginController@login');
-$this->post('logout', 'Auth\LoginController@logout')->name('logout');
-
-// Registration Routes...
-$this->get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-$this->post('register', 'Auth\RegisterController@register');
-
-// Password Reset Routes...
-$this->get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm');
-$this->post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
-$this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
-$this->post('password/reset', 'Auth\ResetPasswordController@reset');
+   

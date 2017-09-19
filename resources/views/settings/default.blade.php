@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.usersmaster')
 
 
 @section('content')
@@ -11,7 +11,7 @@
 <div class="col-3">
   <h2>إعدادات</h2>
   
-  <ul class="nav flex-column nav-tabs">
+  <ul class="nav flex-column nav-tabs" >
     <li class="active"><a href="#reports">تعديل البلاغات</a></li>
   
   </ul>
@@ -23,10 +23,9 @@
       <p>
 
 
-<table class="table-striped table-bordered w-100 settingstable">
+<table class="table-striped table-bordered w-100 settingstable" id="settingstable" >
  <tr >
         <th class="text-center">#</th>
-        <th class="text-center">البلدية</th>
         <th class="text-center">نوع البلاغ</th>
         <th class="text-center">الخطورة</th>
         <th class="text-center">الوصف</th>
@@ -34,20 +33,20 @@
         <th class="text-center"></th>
         <th class="text-center"></th>
         </tr>
-    @foreach($reports as $report)
+    @foreach($councilreports as $councilreport)
        
         <tr>
-        <td>{{$report->id}} </td>
-        <td> {{$report->council->name}}</td>
-        <td> {{$report->type->name}}</td>
-        <td> {{$report->danger}}</td>
-        <td> {{$report->desc}}</td>
-        <td> {{$report->status}}</td>
+        <td>{{$councilreport->id}} </td>
+        <td> {{$councilreport->type->name}}</td>
+        <td> {{$councilreport->danger}}</td>
+        <td> {{$councilreport->desc}}</td>
+        <td> {{$councilreport->state->name}}</td>
 
-        <td><i class="fa fa-pencil" aria-hidden="true"> </td>
-        <td><i class="fa fa-trash-o" aria-hidden="true"></td>
+        <td><button type="submit" class="fa fa-pencil border-0 bg-light reportupdate"  data-toggle="modal" data-target="#updatesettings" ></button> </td>
+        
         </tr>
     @endforeach
+    @include('settingsupdate')
 </table>
 </p>
 

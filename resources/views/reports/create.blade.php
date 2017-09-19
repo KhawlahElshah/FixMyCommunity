@@ -4,8 +4,9 @@
 <p class="display-4 text-center "> بيانات البلاغ</p>
 
 
-<form method="POST" action="{{ url('/') }}" >
- {{ csrf_field() }}
+<form method="POST" action="/create" >
+
+{{ csrf_field() }}
  <label for="reporttype">نوع البلاغ</label>
 <select class="form-control mb-3" name="type_id">
  
@@ -34,6 +35,9 @@
    <textarea name="desc" class="form-control mb-3" rows="5"></textarea>
 
     <input type="hidden" class="form-control"  name="status_id" value='1'>
+
+ <input type="hidden" class="form-control"  id="lat" name="lat" >
+    <input type="hidden" class="form-control"  id="lng" name="lng">
 
    <button type="submit" class="btn btn-lg activebutton">إضافة</button>
 
