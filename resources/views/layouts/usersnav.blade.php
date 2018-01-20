@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-static-top" >
+<nav class="navbar  navbar-static-top navlog" >
             <div class="container">
                 <div class="navbar-header">
 
@@ -16,14 +16,14 @@
                     </a>
                 </div>  --}}
 
-                <div class="collapse navbar-collapse " id="app-navbar-collapse ">
+                <div class="collapse navbar-collapse " id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         &nbsp;
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
+                    <ul class="nav navbar-nav navbar-right" >
                         <!-- Authentication Links -->
                         @if (Auth::guest())
                             <li><a href="{{ route('login') }}">تسجيل الدخول</a></li>

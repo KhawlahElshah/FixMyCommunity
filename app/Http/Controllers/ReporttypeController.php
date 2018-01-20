@@ -18,7 +18,7 @@ public function add(){
         reporttype::create(request((['name'])));
         
     
-      return redirect()->route('show');
+      return redirect('/dashboard');
       
 }
   
@@ -36,6 +36,8 @@ public function update(Request $request){
 
 public function destroy(Request $request){
 //dd($request->all());
+
+    DB::table('reports')->where('type_id', $request->typeidfielddelete)->delete();
     DB::table('reporttypes')->where('id',$request->typeidfielddelete)->delete();
 //$type->delete();
 return redirect('/dashboard');

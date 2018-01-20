@@ -14,25 +14,25 @@
       <link href="{{ asset('css/app.css') }}" rel="stylesheet">
        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
        {{--  <script src="js/locationpicker.jquery.js"></script>  --}}
-
+<link href="https://fonts.googleapis.com/css?family=Lemonada" rel="stylesheet">
        <title>Fix my Community</title>
 
+{{--  <style>
+body{
+
+    font-family: 'Lemonada', cursive;
+    color: #275481;
+}
+</style>  --}}
     
 </head>
-<body>
+<body style="font-family: 'Lemonada', cursive; color: #275481;">
     
  @include('layouts.usersnav')
 
 
 
    @yield('content')
-   
-{{--  @include('layouts.footer')  --}}
-{{--  <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
-<script src="{{asset('/js/index.js')}}"></script>  --}}
-
-{{--  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>  --}}
-{{--  <script src="{{asset('/js/index.js')}}"></script>   --}}
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{asset('/js/index.js')}}"></script> 
 

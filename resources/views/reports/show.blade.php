@@ -2,7 +2,7 @@
 
 
 @section('content')
-<div class="half text-right mb-3">
+<div class="whitehalf text-right mb-3">
 
 <p class="display-4 text-center"> الإحصائيات </p>
 
@@ -48,7 +48,7 @@
 <input type="hidden" name="locations" id="locations" value="{{$locations}}">
 
 
-<select class="form-control mb-3" name="council_id" id="councilsselect">
+<select class="form-control mb-3 h-75" name="council_id" id="councilsselect">
 <option selected>اختر البلدية</option>
 @foreach($councilitems as $item)
 
@@ -90,7 +90,7 @@
 </form>
 </div>
 
-<div class="half">
+<div class="whitehalf">
 <p class="display-4 text-center"> البلاغات السابقة </p>
 @include('layouts.showmap')
 

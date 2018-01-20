@@ -12,8 +12,6 @@
 */
 use App\Http\Middleware\isAdmin;
 
-use Illuminate\Http\Request;
-use App\Mail\contact;
 //guest routes
 Route::get('/','ReportController@index');
 Route::get('/reports/show','ReportController@show');
@@ -25,16 +23,9 @@ Route::get('/aboutus',function(){
     });
     
     Route::get('/contact', function(){
-
         return view('contents.contactus');
     });
 
-    Route::POST('/contact', function(Request $request){
-      
-       \Mail::to('info@fmc.ly')->send(new contact);
-       $request->session()->flash('alert-success', 'لقد تم إرسالة رسالتك!');
-       return back();
-            });
 
 //Route::get('/home', 'HomeController@index')->name('home');
 

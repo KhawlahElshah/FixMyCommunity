@@ -3,33 +3,43 @@
 @extends('layouts.master')
 
 
+
 @section('content')
 
- <div class="section">
 
+<div  class="flash-message">
+    @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+      @if(Session::has('alert-' . $msg))
+
+      <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
+      @endif
+    @endforeach
+  </div> 
+  
  <h2 class="text-center mt-3"> للتواصل معنا </h2>
 <hr>
 
+ <div class="createsection">
 
- <form method="POST" action=""> 
-
+ <form method="POST" action="/contact"> 
+{{csrf_field()}}
 <div class="half">
     
   
     <label for="name">الاسم</label>
-    <input type="name" class="form-control " placeholder="أدخل البريد الإلكتروني">
+    <input type="text" name="sendername" class="form-control " placeholder="أدخل اسمك ">
 
 
 
     <label for="email">البريد الإلكتروني</label>
-    <input type="email" class="form-control " placeholder="أدخل البريد الإلكتروني">
+    <input type="email" name="senderemail" class="form-control " placeholder="أدخل البريد الإلكتروني">
 
 
     
     <label for="phonenumber">رقم الهاتف</label>
-    <input type="number" class="form-control" placeholder="أدخل رقم الهاتف">
+    <input type="text" name="senderphone" class="form-control" placeholder="أدخل رقم الهاتف">
 
-     <textarea name="" id="" cols="70" rows="4" class="mt-3"></textarea>
+     <textarea name="sendermail" id="" cols="70" rows="4" class="mt-3"></textarea>
 
 <br>
     <button type="submit" class="btn btn-lg activebutton">إضافة</button>

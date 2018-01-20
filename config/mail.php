@@ -120,4 +120,13 @@ return [
         ],
     ],
 
+
+
+
+    'mailgun' => [
+        'domain' => 'sandboxfccbfaea5a5f4f8da7dcf0d56e946750.mailgun.org',
+        'secret' => 'key-1cad49e510bb75ad9db22a473395241f',
+    ],
+
+
 ];

@@ -44,7 +44,7 @@ class ReportController extends Controller
     }
 
 
-    public function store(){
+    public function store(Request $request){
         
         // revise this function 
        
@@ -61,7 +61,7 @@ class ReportController extends Controller
 
         //dd($request->all());
         report::create(request((['type_id', 'council_id','danger','desc','lat','lng','status_id'])));
-     
+        $request->session()->flash('alert-success', 'لقد تم إسال بلاغك, شكرا على تعاونك.');
         return redirect('/');
     }
 
@@ -77,16 +77,7 @@ class ReportController extends Controller
         return view('reports.show',compact('councilitems','$high','locations'));
     }
 
-    // public function getreport(Request $request){
-
-    //     $highdanger= report::where([['danger','=','عالي'],['council_id','=',$request->showcouncilid]])->get();
-    //     $avregedanger=report::where(['danger','=','متوسط',['council_id','=',$request->showcouncilid]])->get();
-    //     $lowdanger=report::where(['danger','=','منخفض',['council_id','=',$request->showcouncilid]])->get();
-    //     $done=report::where(['status_id','=','تم إنجازه',['council_id','=',$request->showcouncilid]])->get();
-
-        
-
-    // }
+   
 public function update(Request $request){
 
 $this->validate(request(),['stateidfieldselect'=>'required']);
@@ -130,12 +121,18 @@ public function showdashboard(reporttype $types,council $councils,state $states,
             $currentuser=Auth::user();
            // dd($currentuser);
             $currentcouncil=$currentuser->council;
+            if($currentcouncil == null)
+            {
+                return view('layouts.error');
+            }
+            else{
             $councilreports=$currentcouncil->reports;
 
            
          return view('settings.default',compact('currentuser','currentcoucnil','councilreports','states'));
        // return view('reports.Dashboard',compact('types','councils','users','states','currentuser','currentcoucnil','councilreports'));
-        }    
+        } 
+    }   
        //  return view('reports.Dashboard',compact('types','councils','users','states','currentuser','currentcoucnil','councilreports'));
 }
 

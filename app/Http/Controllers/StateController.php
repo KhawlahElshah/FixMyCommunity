@@ -15,7 +15,7 @@ class StateController extends Controller
         $this->validate(request(),['name'=>'required'] );
 
         State::create(request(['name']));
-        return redirect()->route('show');
+        return redirect('/dashboard');
     }
 
     public function update(Request $request,State $state){
@@ -27,7 +27,8 @@ class StateController extends Controller
 
 
     public function destroy(Request $request){
-
+    
+      DB::table('reports')->where('status_id', $request->stateidfielddelete)->delete();  
       DB::table('states')->where('id', $request->stateidfielddelete)->delete();
       return redirect('/dashboard');
     }

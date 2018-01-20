@@ -38,7 +38,7 @@ class CouncilController extends Controller
     
      public function update(Request $request){
 
-                
+                    
                     $this->validate(request(),['councilnamefield'=>'required']);
                     dd($request->all());
                     DB::table('councils')->where('id',$request->councilidfield)->update(['name'=>$request->councilnamefield]);
@@ -47,6 +47,7 @@ class CouncilController extends Controller
                 }
     public function destroy(Request $request){
 
+        DB::table('reports')->where('council_id', $request->councilidfielddelete)->delete();
         DB::table('councils')->where('id', $request->councilidfielddelete)->delete();
         return redirect('/dashboard');
     }

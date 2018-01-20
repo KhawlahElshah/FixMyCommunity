@@ -9,7 +9,7 @@
     
     <ul class="navbar-nav mt-2 mt-lg-0 justify-content-between">
 
-      <li class="nav-item active">
+      <li class="nav-item ">
         <a class="nav-link" href="/#report">بلِغ </a>
       </li>
       <li class="nav-item">

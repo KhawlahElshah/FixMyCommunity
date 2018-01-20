@@ -4,24 +4,27 @@
 @section('content')
 
 
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ <link rel="stylesheet" href="https://.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 <div class="container">
 
-<div class="col-3">
+<div class="col-3 float-right">
   <h2>إعدادات</h2>
   
-  <ul class="nav flex-column nav-tabs">
-    <li class="active"><a href="#types">أنواع البلاغات</a></li>
-    <li><a href="#users">المستخدمين</a></li>
+  <ul class="nav flex-column nav-tabs navsettings">
+    <li class="active navbutton"><a href="#types">أنواع البلاغات</a></li>
+    <li><a href="#users" >المستخدمين</a></li>
     <li><a href="#councils">البلديات</a></li>
     <li><a href="#states">حالات البلاغ</a></li>
   </ul>
 </div>
 
-  <div class="tab-content col-12 text-center">
-    <div id="types" class="tab-pane fade in active">
-      <h3>أنواع البلاغات</h3>
+
+ 
+  <div class="tab-content col-12 text-center float-right">
+
+    <div id="types" class="tab-pane fade in active mt-5">
+      <h2 class="mb-5">أنواع البلاغات</h2>
       <p>
 
 <form method="POST" action="/dashboard/type">
@@ -31,13 +34,13 @@
  <button type="submit" class="btn btn-lg activebutton">إضافة</button>
 </form>
 
-<table class="table-striped table-bordered w-100 settingstable" id="typestable">
+<table class="table-dark table-hover table-bordered w-100 settingstable" id="typestable">
     @foreach($types as $type)
         <tr class="typerow">
         <td>{{$type->id}} </td>
         <td class="typename" id="typename"> {{$type->name}}</td>
         
-        <td ><button type="submit" class="fa fa-pencil border-0 bg-light"  data-toggle="modal" data-target="#typeupdatemodel"></button>
+        <td ><button type="submit" class="fa fa-pencil border-0 bg-light "  data-toggle="modal" data-target="#typeupdatemodel"></button>
         
         </td>
         
@@ -54,14 +57,14 @@
 
 
  <div id="users" class="tab-pane fade">
-      <h3>المستخدمين</h3>
+      <h2 class="mb-5">المستخدمين</h2>
       <p>
 
  <label for="user">إضافة مستخدم جديد</label>
 
  <button type="submit" class="btn btn-lg activebutton" data-toggle="modal" data-target="#exampleModal">إضافة</button>
 @include('signup')
-<table class="table-striped table-bordered w-100 settingstable" id="userstable">
+<table class="table-dark table-hover table-bordered w-100 settingstable" id="userstable">
     @foreach($users as $user)
         <tr class="userrow">
         <td>{{$user->id}} </td>
@@ -79,7 +82,7 @@
  </div>
    
     <div id="councils" class="tab-pane fade">
-      <h3>البلديات</h3>
+      <h2 class="mb-5">البلديات</h2>
      <p>
 
 
@@ -90,7 +93,7 @@
 @include('addcouncil')
 
 
-<table class="table-striped table-bordered w-100 settingstable" id="councilstable">
+<table class="table-dark table-hover table-bordered w-100 settingstable" id="councilstable">
     @foreach($councils as $council)
         <tr class="councilrow">
         <td>{{$council->id}} </td>
@@ -109,7 +112,7 @@
 </div>
    
     <div id="states" class="tab-pane fade">
-      <h3>حالات البلاغ</h3>
+      <h2 class="mb-5">حالات البلاغ</h2>
       <p>
 
 <form method="POST" action="/dashboard/state">
@@ -122,7 +125,7 @@
 </form>
 
 
-<table class="table-striped table-bordered w-100 settingstable" id="statestable">
+<table class="table-dark table-hover table-bordered w-100 settingstable" id="statestable">
     @foreach($states as $state)
         <tr class="staterow">
         <td>{{$state->id}} </td>

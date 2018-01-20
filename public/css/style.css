@@ -1,3 +1,8 @@
+body{
+
+    font-family: 'Lemonada', cursive;
+    color: #275481;
+}
 
 #navbarTogglerDemo01{
     
@@ -10,12 +15,12 @@
     
     
     #navbarTogglerDemo01 a {
-    color:#05307f;
+    /* color:#05307f; */
     text-align: center;
     text-decoration: none;
     float: left;
     padding: 22px;
-    
+    color: #275481;
     }
     
     
@@ -38,15 +43,18 @@
     .activebutton{
 
         background-color: #ffcd00;
-
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        color: #275481;
     }
 
 .jumbotron{
 
     width: 70%;
-    background-color:#DCDCDC;
+    background-color:#275481;
+    color: white;
     padding: 100px 160px;
-    margin: 50px 200px;
+    margin: 80px 200px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #map {
@@ -70,22 +78,77 @@
     margin-left:5%;
     overflow:hidden;
     font-size: 20px;
+    background-color:#EFEDE3;
    
 }
 
+.whitehalf{
+    width:40%;
+    float:right;
+    margin-top: 70px;
+    margin-right: 5%;
+    margin-left:5%;
+    overflow:hidden;
+    font-size: 20px;
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+    
+}
 
+.aboutphoto{
+    width:25%;
+    float:right;
+    margin-top: 70px;
+    margin-right: 5%;
+    margin-left:5%;
+    overflow:hidden;
+    border-radius: 100px;
+    box-shadow: 0 4px 8px 0 rgba(195, 191, 191, 0.20), 0 6px 20px 0 rgba(150, 145, 145, 0.19);
+
+}
+
+.abouttext{
+    width: 55%;
+    float:right;
+    margin-top: 170px;
+    margin-right: 5%;
+    margin-left:5%;
+    overflow:hidden;
+    font-size: 20px;
+}
+
+.aboutsection{
+    margin-top: 30px;
+    width:95%;
+    height:600px;
+}
 .sidetab{
 
     width:20%;
 }
 
-.section{
-
+.createsection{
+  
     width:100%;
     height: 800px;
-
+    background-color:#EFEDE3;
+    color: #275481;
 }
 
+.section{
+    
+        width:100%;
+        height: 800px;
+       
+    }
+
+#createhalf{
+
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    height: 700px;
+    width: 95%;
+    padding: 2.5%;
+    margin-right: 2.5%;
+}
 
 .footer{
 
@@ -99,4 +162,29 @@
     
     font-size: 25px;
     margin-bottom: 80px;
+}
+
+.navsettings{
+
+    background-color:#275481;
+    color: white;
+    width: 55%;
+    
+}
+
+.navsettings li a{
+
+    color: white;
+}
+
+
+.navlog{
+
+    background-color: #ffcd00;
+    overflow: hidden;
+
+}
+
+
+
 }

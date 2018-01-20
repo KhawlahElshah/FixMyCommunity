@@ -124,8 +124,8 @@ $('#avrage').text(avragedanger);
 $('#low').text(lowdanger);
 $('#countdone').text(done);
 
-})
+});
 
 
 
-
+setTimeout(function(){$('.flash-message').fadeOut();}, 5000);

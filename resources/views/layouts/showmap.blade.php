@@ -12,7 +12,7 @@ var locations = [
 @endforeach
 ];
 
-alert(locations);
+
 </script>
   
       

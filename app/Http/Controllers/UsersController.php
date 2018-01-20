@@ -27,7 +27,8 @@ class UsersController extends Controller
         
         
             public function destroy(Request $request){
-        
+                
+              DB::table('councils')->where('user_id', $request->useridfielddelete)->delete();
               DB::table('users')->where('id', $request->useridfielddelete)->delete();
               return redirect('/dashboard');
             }
