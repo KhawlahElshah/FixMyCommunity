@@ -40,7 +40,7 @@ class CouncilController extends Controller
 
                     
                     $this->validate(request(),['councilnamefield'=>'required']);
-                    dd($request->all());
+                   
                     DB::table('councils')->where('id',$request->councilidfield)->update(['name'=>$request->councilnamefield]);
                     return redirect('/dashboard');
 
